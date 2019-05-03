@@ -5,11 +5,11 @@
 Ground::Ground()
 {
 	for(int i=0; i<100; i++){	
-		heights[i] = rnd(50, 100);  // create 100 random peaks and add them to the heights array
+		heights[i] = rand() % 100 + 50;  // create 100 random peaks and add them to the heights array
 	}
 
-	int f1 = rnd(10, 50); 
-	int f2 = rnd(50, 80); // predefined landing area ranges
+	int f1 = rand() % 50 + 10;
+	int f2 = rand() % 80 + 50; // predefined landing area ranges
 
 	float h = heights[f1];
 

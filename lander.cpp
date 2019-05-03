@@ -9,8 +9,8 @@ const float PI = 3.14159268; // set pi for drawing of the lander
 Lander::Lander(float ix, float iy, int iradius)
 {
 	x = ix; y = iy; radius = iradius;
-	dx=rnd(-2, 2);
-	dy=rnd(1, 1);
+	dx = rand() % 2 - 4;
+	dy = 1;
 	fuel = 300;
 }
 
@@ -62,9 +62,10 @@ void Lander::gravity()
 
 void Lander::reset() 
 {
-	x = rnd(100,900); y = rnd(350,450); // reset the landers position and fuel withing dx and dy boundaries
-	dx=rnd(-2, 2);
-	dy=rnd(1, 1);
+	x = rand() % 900 + 100;
+	y = rand() % 450 + 350; // reset the landers position and fuel withing dx and dy boundaries
+	dx = rand() % 2 - 4;
+	dy= 1;
 	fuel = 300;
 }
 

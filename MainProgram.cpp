@@ -13,11 +13,9 @@ void MainProgram::init()
 	}
 
 	ground = new Ground;
-	background = new Image("background.bmp", glm::vec2(500.0f, 250.0f), 1000, 500);
 
 	//reseed the program at every compilation
 	srand(time(0));
-	windowW = 1000, windowH = 500;
 	startx = rand() % 900 + 100; 
 	starty = rand() % 450 + 350; 
 	startradius = 10;
@@ -27,6 +25,8 @@ void MainProgram::init()
 	 t = new std::string(" ");
 	fuel = new std::string(" ");
 	altitude = new std::string(" ");
+
+	background = new Image("background.bmp", glm::vec2(500.0f, 250.0f), 1000, 500);
 
 }
 

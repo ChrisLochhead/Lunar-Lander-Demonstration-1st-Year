@@ -81,7 +81,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Bitmap.cpp" />
     <ClCompile Include="ground.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="lander.cpp" />

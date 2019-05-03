@@ -12,7 +12,10 @@
 class MainProgram {
 public:
 
-	MainProgram() {}
+	MainProgram() 
+	{
+		windowW = 1000, windowH = 500;
+	}
 
 	void init();
 
@@ -24,13 +27,13 @@ public:
 
 	void collisions();
 
-	Lander* getLander() { return lander; }
-	Ground* getGround() { return ground; }
-	Image* getBackground() { return background; }
-
 	float windowW;
 	float windowH;
 	float gametime = 0;
+
+	Ground *ground = NULL;
+	Image *background = NULL;
+	Lander *lander = NULL;// (startx, starty, startradius);
 
 private:
 
@@ -41,10 +44,6 @@ private:
 	float starty;// = rnd(350, 450);
 	int startradius;// = 10;
 
-	Ground *ground = NULL;
-	Image *background = NULL;
-
-	Lander *lander;// (startx, starty, startradius);
 
 	std::string *t;// (" ");
 	std::string *fuel;// (" ");

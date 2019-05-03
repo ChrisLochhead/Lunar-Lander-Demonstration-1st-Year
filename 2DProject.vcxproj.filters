@@ -24,9 +24,6 @@
     <ClCompile Include="ground.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Bitmap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
