@@ -24,6 +24,11 @@ Ground::Ground()
 	}
 }
 
+float Ground::heightAt(float x) {
+	int height_index = x * NUM_HEIGHTS / SCREEN_WIDTH;
+	return heights[height_index];
+}
+
 void Ground::show()
 {
 	glBegin(GL_LINE_STRIP); // draw a single line with multiple points
