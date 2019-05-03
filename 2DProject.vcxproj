@@ -87,6 +87,7 @@
     <ClCompile Include="lander.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="random.cpp" />
+    <ClCompile Include="Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bitmap.h" />
@@ -94,6 +95,7 @@
     <ClInclude Include="Image.h" />
     <ClInclude Include="lander.h" />
     <ClInclude Include="random.h" />
+    <ClInclude Include="Shader.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="background.bmp" />

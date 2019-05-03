@@ -3,7 +3,7 @@
 
 void Image::init(unsigned char* image)
 {
-	imageShader = new Shader("src/Image.vert", "src/Image.geom", "src/Image.frag");
+	imageShader = new Shader("Dependencies/Shader/Image.vert", "Dependencies/Shader/Image.geom", "Dependencies/Shader/Image.frag");
 
 	// Generate and load image data
 	glGenTextures(1, &m_texture);
@@ -29,7 +29,7 @@ void Image::init(unsigned char* image)
 	glBufferData(GL_ARRAY_BUFFER, sizeof(backgroundCoords), backgroundCoords, GL_STATIC_DRAW);
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 3, (GLvoid*)0);
-	if (isMenu) m_model = glm::scale(m_model, glm::vec3((float)Input::SCREEN_WIDTH / 2, (float)Input::SCREEN_HEIGHT / 2, 1.0f));
+	m_model = glm::scale(m_model, glm::vec3((float)1000 / 2, (float)500 / 2, 1.0f));
 	glBindBuffer(GL_ARRAY_BUFFER, m_VBO2);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(textureCoords), textureCoords, GL_STATIC_DRAW);
 	glEnableVertexAttribArray(1);
@@ -42,27 +42,28 @@ void Image::init(unsigned char* image)
 	glBindVertexArray(0);
 	SOIL_free_image_data(image);
 
-	m_proj = glm::ortho(0.0f, (float)Input::SCREEN_WIDTH, 0.0f, (float)Input::SCREEN_HEIGHT, 0.0f, 100.0f);
+	m_proj = glm::ortho(0.0f, (float)1000, 0.0f, (float)500, 0.0f, 100.0f);
 	m_view = glm::lookAt(glm::vec3(0.0f, 0.0f, 3.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+
+	glUseProgram(0);
 }
 
-Image::Image(const char * filename, glm::vec2 screenPos, bool ismenu)
-{
-	m_image = SOIL_load_image(filename, &m_imgWidth, &m_imgHeight, 0, SOIL_LOAD_RGBA);
-	m_model = glm::translate(m_model, glm::vec3(screenPos.x, screenPos.y, 0.0f));
+//Image::Image(const char * filename, glm::vec2 screenPos)
+//{
+//	m_image = SOIL_load_image(filename, &m_imgWidth, &m_imgHeight, 0, SOIL_LOAD_RGBA);
+//	m_model = glm::translate(m_model, glm::vec3(screenPos.x, screenPos.y, 0.0f));
+//
+//	posX = screenPos.x;
+//	posY = screenPos.y;
+//	if (m_image) {
+//		init(m_image);
+//	}
+//	else {
+//		std::cout << "IMAGE ERROR: Image: " << filename << "was not found!" << std::endl;
+//	}
+//}
 
-	posX = screenPos.x;
-	posY = screenPos.y;
-	isMenu = ismenu;
-	if (m_image) {
-		init(m_image);
-	}
-	else {
-		std::cout << "IMAGE ERROR: Image: " << filename << "was not found!" << std::endl;
-	}
-}
-
-Image::Image(const char * filename, glm::vec2 screenPos, int width, int height, bool ismenu)
+Image::Image(const char * filename, glm::vec2 screenPos, int width, int height)
 {
 	m_Width = width;
 	m_Height = height;
@@ -72,7 +73,6 @@ Image::Image(const char * filename, glm::vec2 screenPos, int width, int height, 
 
 	posX = screenPos.x;
 	posY = screenPos.y;
-	isMenu = ismenu;
 
 	if (m_image) {
 		init(m_image);
@@ -113,8 +113,7 @@ void Image::scale(glm::vec2 scale, bool resetMat) {
 	if (!resetMat) {
 		glm::mat4 temp(1.0f);
 		temp = glm::translate(temp, glm::vec3(posX, posY, 0.0f));
-		if (isMenu)
-			temp = glm::scale(temp, glm::vec3(640.0f, 360.0f, 1.0f));
+		temp = glm::scale(temp, glm::vec3(500.0f, 250.0f, 1.0f));
 
 		temp = glm::rotate(temp, currentRot, glm::vec3(0.0f, 1.0f, 0.0f));
 		temp = glm::scale(temp, glm::vec3(scale.x, scale.y, 0.0f));
@@ -139,4 +138,6 @@ void Image::draw()
 	glBindVertexArray(m_VAO);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	glBindVertexArray(0);
+	glUseProgram(0);
+
 }

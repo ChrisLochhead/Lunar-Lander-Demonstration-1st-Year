@@ -1,12 +1,12 @@
 
 #include<iostream>
-#include "GL\freeglut.h"
 #include"random.h"
 #include"lander.h"
 #include"ground.h"
 #include<sstream>	
 #include<stdexcept>		
 #include<string>
+#include "Image.h"
 #include"Bitmap.h"
 
 using namespace std;
@@ -15,7 +15,7 @@ float windowW = 1000, windowH = 500; float aspect; bool clearScreen;
 float startx = rnd(100,900); float starty = rnd(350,450); int startradius = 10; 
 
 Ground *theground = NULL;	
-Bitmap *background = NULL;	
+Image *background = NULL;
 
 Lander lander(startx, starty, startradius);		
 
@@ -26,8 +26,16 @@ string altitude(" ");
 
 void init()
 {
+	//initialise glew
+	glewExperimental = GL_TRUE;
+	GLenum err = glewInit();
+	if (GLEW_OK != err) { // glewInit failed, something is seriously wrong
+		std::cout << "glewInit failed, aborting." << endl;
+		exit(1);
+	}
+
 	theground = new Ground;
-	background = new Bitmap("background.bmp", false);
+	background = new Image("background.bmp", glm::vec2(500.0f, 250.0f), 1000, 500);
 }
 
 void drawString(void *font, float x, float y, const char *str)		
@@ -96,9 +104,12 @@ void collisions()
 
 void display(void)
 {
+	//clear the buffer
 	glClear(GL_COLOR_BUFFER_BIT);
+	//disable texturing from drawing text onto the screen
+	glDisable(GL_TEXTURE_2D);
 
-	background->draw(0, 100, 1000, 500);
+	background->draw();
 	theground->show();
 	lander.show();
 

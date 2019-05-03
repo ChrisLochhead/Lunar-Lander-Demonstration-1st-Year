@@ -1,26 +1,13 @@
 
 #include "Bitmap.h"
-#include "GL\freeglut.h"
+//#include "GL\freeglut.h"
 
 Bitmap::Bitmap(const char fname[], bool transparency){
-	//bytes=0;					 
-	//							
-	//withAlpha = transparency;
-	//loaded = false;
-	//BMPLoadGL(fname); // find bitmap file in debug folder
-
-	m_image = SOIL_load_image(filename, &m_imgWidth, &m_imgHeight, 0, SOIL_LOAD_RGBA);
-	m_model = glm::translate(m_model, glm::vec3(screenPos.x, screenPos.y, 0.0f));
-
-	posX = screenPos.x;
-	posY = screenPos.y;
-	isMenu = ismenu;
-	if (m_image) {
-		init(m_image);
-	}
-	else {
-		std::cout << "IMAGE ERROR: Image: " << filename << "was not found!" << std::endl;
-	}
+	bytes=0;					 
+								
+	withAlpha = transparency;
+	loaded = false;
+	BMPLoadGL(fname); // find bitmap file in debug folder
 
 }
 
@@ -223,49 +210,49 @@ BMPError Bitmap::BMPLoad(const char* fname)
 void Bitmap::drawTexture(float tex_x1, float tex_y1, float tex_x2, float tex_y2,
 		         int scr_x1, int scr_y1, int scr_x2, int scr_y2){
 	
-	glEnable(GL_TEXTURE_2D);
-	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-	glBindTexture(GL_TEXTURE_2D, texture);
-	glBegin(GL_QUADS);
-	switch(orient){
-	case NORMAL:
-		glTexCoord2d(tex_x1,tex_y1);	glVertex2d(scr_x1,scr_y1);
-		glTexCoord2d(tex_x2,tex_y1);	glVertex2d(scr_x2,scr_y1);
-		glTexCoord2d(tex_x2,tex_y2);	glVertex2d(scr_x2,scr_y2);
-		glTexCoord2d(tex_x1,tex_y2);	glVertex2d(scr_x1,scr_y2);
-		break;
-	case MIRROR_X:
-		glTexCoord2d(tex_x2,tex_y1);	glVertex2d(scr_x1,scr_y1);
-		glTexCoord2d(tex_x1,tex_y1);	glVertex2d(scr_x2,scr_y1);
-		glTexCoord2d(tex_x1,tex_y2);	glVertex2d(scr_x2,scr_y2);
-		glTexCoord2d(tex_x2,tex_y2);	glVertex2d(scr_x1,scr_y2);
-		break;
-	case MIRROR_Y:
-		glTexCoord2d(tex_x1,tex_y2);	glVertex2d(scr_x1,scr_y1);
-		glTexCoord2d(tex_x2,tex_y2);	glVertex2d(scr_x2,scr_y1);
-		glTexCoord2d(tex_x2,tex_y1);	glVertex2d(scr_x2,scr_y2);
-		glTexCoord2d(tex_x1,tex_y1);	glVertex2d(scr_x1,scr_y2);
-		break;
-	case ROT_90:
-		glTexCoord2d(tex_x1,tex_y2);	glVertex2d(scr_x1,scr_y1);
-		glTexCoord2d(tex_x1,tex_y1);	glVertex2d(scr_x2,scr_y1);
-		glTexCoord2d(tex_x2,tex_y1);	glVertex2d(scr_x2,scr_y2);
-		glTexCoord2d(tex_x2,tex_y2);	glVertex2d(scr_x1,scr_y2);
-		break;
-	case ROT_180:
-		glTexCoord2d(tex_x2,tex_y2);	glVertex2d(scr_x1,scr_y1);
-		glTexCoord2d(tex_x1,tex_y2);	glVertex2d(scr_x2,scr_y1);
-		glTexCoord2d(tex_x1,tex_y1);	glVertex2d(scr_x2,scr_y2);
-		glTexCoord2d(tex_x2,tex_y1);	glVertex2d(scr_x1,scr_y2);
-		break;
-	case ROT_270:
-		glTexCoord2d(tex_x2,tex_y1);	glVertex2d(scr_x1,scr_y1);
-		glTexCoord2d(tex_x2,tex_y2);	glVertex2d(scr_x2,scr_y1);
-		glTexCoord2d(tex_x1,tex_y2);	glVertex2d(scr_x2,scr_y2);
-		glTexCoord2d(tex_x1,tex_y1);	glVertex2d(scr_x1,scr_y2);
-	}
-	glEnd();
-	glDisable(GL_TEXTURE_2D);
+	//glEnable(GL_TEXTURE_2D);
+	//glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+	//glBindTexture(GL_TEXTURE_2D, texture);
+	//glBegin(GL_QUADS);
+	//switch(orient){
+	//case NORMAL:
+	//	glTexCoord2d(tex_x1,tex_y1);	glVertex2d(scr_x1,scr_y1);
+	//	glTexCoord2d(tex_x2,tex_y1);	glVertex2d(scr_x2,scr_y1);
+	//	glTexCoord2d(tex_x2,tex_y2);	glVertex2d(scr_x2,scr_y2);
+	//	glTexCoord2d(tex_x1,tex_y2);	glVertex2d(scr_x1,scr_y2);
+	//	break;
+	//case MIRROR_X:
+	//	glTexCoord2d(tex_x2,tex_y1);	glVertex2d(scr_x1,scr_y1);
+	//	glTexCoord2d(tex_x1,tex_y1);	glVertex2d(scr_x2,scr_y1);
+	//	glTexCoord2d(tex_x1,tex_y2);	glVertex2d(scr_x2,scr_y2);
+	//	glTexCoord2d(tex_x2,tex_y2);	glVertex2d(scr_x1,scr_y2);
+	//	break;
+	//case MIRROR_Y:
+	//	glTexCoord2d(tex_x1,tex_y2);	glVertex2d(scr_x1,scr_y1);
+	//	glTexCoord2d(tex_x2,tex_y2);	glVertex2d(scr_x2,scr_y1);
+	//	glTexCoord2d(tex_x2,tex_y1);	glVertex2d(scr_x2,scr_y2);
+	//	glTexCoord2d(tex_x1,tex_y1);	glVertex2d(scr_x1,scr_y2);
+	//	break;
+	//case ROT_90:
+	//	glTexCoord2d(tex_x1,tex_y2);	glVertex2d(scr_x1,scr_y1);
+	//	glTexCoord2d(tex_x1,tex_y1);	glVertex2d(scr_x2,scr_y1);
+	//	glTexCoord2d(tex_x2,tex_y1);	glVertex2d(scr_x2,scr_y2);
+	//	glTexCoord2d(tex_x2,tex_y2);	glVertex2d(scr_x1,scr_y2);
+	//	break;
+	//case ROT_180:
+	//	glTexCoord2d(tex_x2,tex_y2);	glVertex2d(scr_x1,scr_y1);
+	//	glTexCoord2d(tex_x1,tex_y2);	glVertex2d(scr_x2,scr_y1);
+	//	glTexCoord2d(tex_x1,tex_y1);	glVertex2d(scr_x2,scr_y2);
+	//	glTexCoord2d(tex_x2,tex_y1);	glVertex2d(scr_x1,scr_y2);
+	//	break;
+	//case ROT_270:
+	//	glTexCoord2d(tex_x2,tex_y1);	glVertex2d(scr_x1,scr_y1);
+	//	glTexCoord2d(tex_x2,tex_y2);	glVertex2d(scr_x2,scr_y1);
+	//	glTexCoord2d(tex_x1,tex_y2);	glVertex2d(scr_x2,scr_y2);
+	//	glTexCoord2d(tex_x1,tex_y1);	glVertex2d(scr_x1,scr_y2);
+	//}
+	//glEnd();
+	//glDisable(GL_TEXTURE_2D);
 }
 
 

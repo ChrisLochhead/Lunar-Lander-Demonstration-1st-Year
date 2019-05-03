@@ -4,6 +4,7 @@
 #define BITMAP_H
 
 #include <string>
+
 typedef unsigned char BYTE;
 #define BMPError char
 #include "GL\freeglut.h"
