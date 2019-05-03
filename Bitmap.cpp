@@ -3,11 +3,25 @@
 #include "GL\freeglut.h"
 
 Bitmap::Bitmap(const char fname[], bool transparency){
-	bytes=0;					 
-								
-	withAlpha = transparency;
-	loaded = false;
-	BMPLoadGL(fname); // find bitmap file in debug folder
+	//bytes=0;					 
+	//							
+	//withAlpha = transparency;
+	//loaded = false;
+	//BMPLoadGL(fname); // find bitmap file in debug folder
+
+	m_image = SOIL_load_image(filename, &m_imgWidth, &m_imgHeight, 0, SOIL_LOAD_RGBA);
+	m_model = glm::translate(m_model, glm::vec3(screenPos.x, screenPos.y, 0.0f));
+
+	posX = screenPos.x;
+	posY = screenPos.y;
+	isMenu = ismenu;
+	if (m_image) {
+		init(m_image);
+	}
+	else {
+		std::cout << "IMAGE ERROR: Image: " << filename << "was not found!" << std::endl;
+	}
+
 }
 
 Bitmap::Bitmap(std::string fname, bool transparency){

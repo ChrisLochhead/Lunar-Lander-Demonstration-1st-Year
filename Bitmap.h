@@ -8,6 +8,8 @@ typedef unsigned char BYTE;
 #define BMPError char
 #include "GL\freeglut.h"
 
+#include "SOIL2.h"
+
 enum Orientation{
 	NORMAL,
 	MIRROR_X,

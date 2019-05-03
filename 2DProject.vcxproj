@@ -54,13 +54,13 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\repos\Lunar-Lander-Demonstration-1st-Year-master\Dependencies\freeglut\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Dependencies\freeglut\include;$(ProjectDir)Dependencies\SOIL2\include\SOIL2;$(ProjectDir)Dependencies\glm;$(ProjectDir)Dependencies\glew-2.1.0\include\GL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>freeglut.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>D:\repos\Lunar-Lander-Demonstration-1st-Year-master\Dependencies\freeglut\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>freeglut.lib;soil2-debug.lib;glew32d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)Dependencies\freeglut\lib;$(ProjectDir)Dependencies\SOIL2\lib;$(ProjectDir)Dependencies\glew-2.1.0\lib\Debug\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -83,6 +83,7 @@
   <ItemGroup>
     <ClCompile Include="Bitmap.cpp" />
     <ClCompile Include="ground.cpp" />
+    <ClCompile Include="Image.cpp" />
     <ClCompile Include="lander.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="random.cpp" />
@@ -90,6 +91,7 @@
   <ItemGroup>
     <ClInclude Include="Bitmap.h" />
     <ClInclude Include="ground.h" />
+    <ClInclude Include="Image.h" />
     <ClInclude Include="lander.h" />
     <ClInclude Include="random.h" />
   </ItemGroup>
